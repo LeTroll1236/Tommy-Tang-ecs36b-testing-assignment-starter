@@ -4,16 +4,17 @@
  */
 
 
-#include <cstdio>
-#include <cstdlib>
+#include <stdio.h>
+#include <stdlib.h>
 #include "sorting.h"
 #include "formatting.h"
 
 int main(int argc, char* argv[]){
 
-  int* given_numbers;
-  int len;
-  parse_args(argc, argv, given_numbers, &len);
+  int* given_numbers = NULL;
+  int len = 0;
+
+  parse_args(argc, argv, &given_numbers, &len);
   int* sorted_ar = get_sorted(given_numbers, len);
 
   printf("The numbers you entered are: ");
@@ -24,8 +25,10 @@ int main(int argc, char* argv[]){
   print_ar(sorted_ar, len);
   printf("\n");
 
-  return 0;
+  free(given_numbers);
+  free(sorted_ar);
 
+  return 0;
 }
 
 
